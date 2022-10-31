@@ -84,12 +84,15 @@ obtainInstruction('steak', 0)
 
 // Iteration 3 using async/await
 async function makeBroccoli() {
-  broccoli.forEach(async (step, index) => {
+  await broccoli.forEach(async (step, index) => {
     const instruction = await obtainInstruction('broccoli', index)
     document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`
+    if (index === broccoli.length - 1) {
+      document.querySelector('#broccoliImg').hidden = false
+      document.querySelector("#broccoli").innerHTML += `<li>Broccoli is ready!</li>`
+    }
   })
-  document.querySelector('#broccoliImg').hidden = false
-  document.querySelector("#broccoli").innerHTML += `<li>Broccoli is ready!</li>`
+  
 }
 makeBroccoli()
 
